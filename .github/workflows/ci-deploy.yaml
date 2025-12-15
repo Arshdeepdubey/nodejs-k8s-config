@@ -20,8 +20,8 @@ jobs:
 
     - name: Load Docker image
       run: |
-        docker pull docker.io/arshattech/hello-k8s:latest
-        kind load docker-image docker.io/arshattech/hello-k8s:latest
+        docker pull docker.io/arshattech/demo-app:test
+        kind load docker-image docker.io/arshattech/demo-app:test
 
     - name: Deploy to cluster
       run: |
