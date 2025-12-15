@@ -1,0 +1,24 @@
+name: CD - Deploy to Kubernetes
+
+on:
+  push:
+    paths:
+      - "*.yaml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout config repo
+      uses: actions/checkout@v4
+
+    - name: Set kubeconfig
+      run: |
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > ~/.kube/config
+
+    - name: Deploy to cluster
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
