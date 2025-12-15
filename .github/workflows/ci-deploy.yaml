@@ -2,8 +2,8 @@ name: CD - Deploy to Kubernetes
 
 on:
   push:
-    paths:
-      - "*.yaml"
+    branches:
+      - main
 
 jobs:
   deploy:
